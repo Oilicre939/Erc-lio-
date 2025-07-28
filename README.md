@@ -2,9 +2,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Megabytes Vodacom - Pacotes de Internet</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Reset global para evitar conflitos de estilos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
         :root {
             --primary-red: #e4002b;
             --dark-red: #c40023;
@@ -13,27 +23,23 @@
             --medium-gray: #e0e0e0;
             --dark-gray: #333333;
             --black: #111111;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --accent-yellow: #ffcc00;
         }
         
         body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
             background: linear-gradient(135deg, #1a1a1a, #000);
             color: var(--white);
             line-height: 1.6;
             min-height: 100vh;
             background-attachment: fixed;
+            overflow-x: hidden;
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 1rem;
+            padding: 0 15px;
         }
         
         /* Header Compacto */
@@ -43,12 +49,12 @@
             padding: 0.8rem 1rem;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 3px solid #ffcc00;
+            border-bottom: 3px solid var(--accent-yellow);
         }
         
         .logo {
@@ -56,12 +62,12 @@
             align-items: center;
             gap: 10px;
             font-weight: bold;
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 2vw, 1.3rem);
         }
         
         .logo i {
-            font-size: 1.5rem;
-            color: #ffcc00;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            color: var(--accent-yellow);
         }
         
         .whatsapp-btn {
@@ -76,6 +82,7 @@
             gap: 8px;
             transition: all 0.3s ease;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
         }
         
         .whatsapp-btn:hover {
@@ -91,10 +98,10 @@
         }
         
         .main-title {
-            font-size: 2.2rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             margin-bottom: 1rem;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-            color: #ffcc00;
+            color: var(--accent-yellow);
             position: relative;
             display: inline-block;
         }
@@ -112,7 +119,7 @@
         }
         
         .subtitle {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
             margin-bottom: 2rem;
             max-width: 700px;
             margin-left: auto;
@@ -143,7 +150,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             color: #ddd;
-            font-size: 0.95rem;
+            font-size: clamp(0.8rem, 1.5vw, 0.95rem);
         }
         
         .tab-btn.active, .tab-btn:hover {
@@ -176,19 +183,21 @@
             width: 100%;
             border-collapse: collapse;
             margin: 1rem 0;
+            table-layout: fixed;
         }
         
         .package-table th {
             background: var(--primary-red);
             padding: 1rem;
             text-align: center;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
         }
         
         .package-table td {
             padding: 1rem;
             text-align: center;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            word-wrap: break-word;
         }
         
         .package-table tr:nth-child(even) {
@@ -201,13 +210,13 @@
         
         .package-size {
             font-weight: bold;
-            font-size: 1.1rem;
-            color: #ffcc00;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            color: var(--accent-yellow);
         }
         
         .package-price {
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
             color: var(--primary-red);
         }
         
@@ -220,6 +229,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: bold;
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
         }
         
         .buy-btn:hover {
@@ -242,8 +252,8 @@
         .section-title {
             text-align: center;
             margin-bottom: 1.5rem;
-            color: #ffcc00;
-            font-size: 1.5rem;
+            color: var(--accent-yellow);
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
         }
         
         .payment-options {
@@ -277,17 +287,18 @@
             gap: 10px;
             margin-bottom: 1rem;
             color: var(--primary-red);
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
         }
         
         .payment-card .number {
-            font-size: 1.4rem;
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
             font-weight: bold;
             margin: 0.8rem 0;
-            color: #ffcc00;
+            color: var(--accent-yellow);
         }
         
         .payment-card .name {
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 1.8vw, 1rem);
             color: #ccc;
         }
         
@@ -299,25 +310,25 @@
             max-width: 1000px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(228, 0, 43, 0.4);
-            border: 2px solid #ffcc00;
+            border: 2px solid var(--accent-yellow);
         }
         
         .cta-box h2 {
-            font-size: 1.8rem;
+            font-size: clamp(1.5rem, 3vw, 2rem);
             margin-bottom: 1rem;
-            color: #ffcc00;
+            color: var(--accent-yellow);
         }
         
         .cta-box p {
             margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
         
         .highlight {
-            color: #ffcc00;
+            color: var(--accent-yellow);
             font-weight: bold;
             text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
         }
@@ -350,9 +361,10 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
+            z-index: 2000;
             align-items: center;
             justify-content: center;
+            overflow-y: auto;
         }
         
         .modal-content {
@@ -365,6 +377,7 @@
             animation: modalFadeIn 0.3s ease;
             border: 2px solid var(--primary-red);
             box-shadow: 0 0 30px rgba(228, 0, 43, 0.6);
+            margin: 20px;
         }
         
         @keyframes modalFadeIn {
@@ -380,6 +393,7 @@
             cursor: pointer;
             color: #ccc;
             transition: color 0.3s;
+            z-index: 10;
         }
         
         .close-modal:hover {
@@ -388,9 +402,9 @@
         
         .modal h3 {
             text-align: center;
-            color: #ffcc00;
+            color: var(--accent-yellow);
             margin-bottom: 1.5rem;
-            font-size: 1.6rem;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
         }
         
         .form-group {
@@ -402,6 +416,7 @@
             margin-bottom: 0.5rem;
             font-weight: 500;
             color: #ddd;
+            font-size: clamp(0.9rem, 1.8vw, 1rem);
         }
         
         .form-group input, .form-group select {
@@ -410,7 +425,7 @@
             background: rgba(50, 50, 50, 0.7);
             border: 1px solid rgba(228, 0, 43, 0.5);
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 1.8vw, 1rem);
             color: white;
         }
         
@@ -424,7 +439,7 @@
         
         .selected-package p {
             margin: 0.5rem 0;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
         }
         
         .modal-btn {
@@ -435,7 +450,7 @@
             border: none;
             border-radius: 8px;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
@@ -450,7 +465,7 @@
             box-shadow: 0 6px 15px rgba(228, 0, 43, 0.6);
         }
         
-        /* Responsividade */
+        /* Responsividade aprimorada */
         @media (max-width: 768px) {
             .compact-header {
                 flex-direction: column;
@@ -458,26 +473,43 @@
                 padding: 0.8rem;
             }
             
-            .main-title {
-                font-size: 1.8rem;
-            }
-            
-            .package-table th, .package-table td {
-                padding: 0.8rem 0.5rem;
-                font-size: 0.9rem;
-            }
-            
-            .package-size, .package-price {
-                font-size: 1rem;
-            }
-            
-            .buy-btn {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.9rem;
+            .package-table {
+                display: block;
+                overflow-x: auto;
             }
             
             .payment-options {
                 flex-direction: column;
+                align-items: center;
+            }
+            
+            .payment-card {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .tab-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .package-table td, .package-table th {
+                padding: 0.6rem;
+            }
+            
+            .cta-box {
+                padding: 1.5rem;
+            }
+            
+            .modal-content {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -739,7 +771,7 @@
                 <h2>⭐ OFERTA ESPECIAL! ⭐</h2>
                 <p>Adquira <span class="highlight">QUALQUER PACOTE</span> agora e receba <span class="highlight">5% DE BÔNUS</span> em sua próxima compra!</p>
                 <p>Garanta já seus megabytes com a melhor internet de Moçambique!</p>
-                <a href="https://wa.me/865627840" class="whatsapp-btn" style="font-size: 1.2rem; padding: 0.8rem 2rem;" target="_blank">
+                <a href="https://wa.me/865627840" class="whatsapp-btn" style="font-size: clamp(1rem, 2.5vw, 1.3rem); padding: 0.8rem 2rem;" target="_blank">
                     <i class="fab fa-whatsapp"></i> COMPRAR AGORA PELO WHATSAPP
                 </a>
             </div>
@@ -747,11 +779,12 @@
     </div>
     
     <footer>
-        <p>© Desenvolvedor Ercílio🧑‍💻. Todos os direitos reservados.</p>
+        <p>© 2025 por desenvolvedor Ercílio. Todos os direitos reservados.</p>
         <p>Adquira já os teus megas com segurança, confiança e rapidez!🚨🔥</p>
     </footer>
     
     <!-- Modal de Compra -->
+   
     <div class="modal" id="purchaseModal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -869,10 +902,25 @@
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.querySelector('.tabs-container').scrollIntoView({
-                    behavior: 'smooth'
+                    behavior: 'smooth',
+                    block: 'start'
                 });
             }, 500);
         });
+        
+        // Prevent form from causing page reload
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', e => e.preventDefault());
+        });
+        
+        // Fix for mobile viewport height
+        function setViewportHeight() {
+            let vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+        
+        setViewportHeight();
+        window.addEventListener('resize', setViewportHeight);
     </script>
 </body>
 </html>
